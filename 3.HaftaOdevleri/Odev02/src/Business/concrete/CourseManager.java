@@ -1,6 +1,7 @@
 package Business.concrete;
 
 import Business.abstracts.CourseService;
+import Core.Logger;
 import DataAccess.abstracts.CategoryDao;
 import DataAccess.abstracts.CourseDao;
 import Entity.concrete.Course;
@@ -8,9 +9,11 @@ import Entity.concrete.Course;
 import java.util.List;
 
 public class CourseManager implements CourseService {
+    List<Logger> loggers;
     CourseDao courseDao;
 
-    public CourseManager(CourseDao courseDao) {
+    public CourseManager(CourseDao courseDao,List<Logger> loggers) {
+        this.loggers = loggers;
         this.courseDao = courseDao;
     }
 
@@ -42,6 +45,9 @@ public class CourseManager implements CourseService {
             System.out.println("Kurs Eklenemedi : Kurs Ücreti 0 TL ve aşağı olamaz");
         }else if (!checkNameIfAlreadyUse(course)){
             System.out.println("Kurs Eklenemedi : kurs zaten mevcut ");
+        }
+        for (Logger logger : loggers){
+            logger.log(course.getName());
         }
     }
 

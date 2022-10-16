@@ -1,6 +1,7 @@
 package Business.concrete;
 
 import Business.abstracts.CategoryService;
+import Core.Logger;
 import DataAccess.abstracts.CategoryDao;
 import Entity.concrete.Category;
 import Entity.concrete.Course;
@@ -8,9 +9,11 @@ import Entity.concrete.Course;
 import java.util.List;
 
 public class CategoryManager implements CategoryService {
+    List<Logger> loggers;
     CategoryDao categoryDao;
 
-    public CategoryManager(CategoryDao categoryDao) {
+    public CategoryManager(CategoryDao categoryDao,List<Logger> loggers) {
+        this.loggers = loggers;
         this.categoryDao = categoryDao;
     }
 
@@ -25,6 +28,9 @@ public class CategoryManager implements CategoryService {
             categoryDao.add(category);
         }else {
             System.out.println("Kategori zaten mevcut");
+        }
+        for (Logger logger : loggers){
+            logger.log(category.getName());
         }
     }
 

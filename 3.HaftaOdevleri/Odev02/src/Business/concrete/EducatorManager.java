@@ -1,15 +1,18 @@
 package Business.concrete;
 
 import Business.abstracts.EducatorService;
+import Core.Logger;
 import DataAccess.abstracts.EducatorDao;
 import Entity.concrete.Educator;
 
 import java.util.List;
 
 public class EducatorManager implements EducatorService {
+    List<Logger> loggers;
     private EducatorDao educatorDao;
 
-    public EducatorManager(EducatorDao educatorDao) {
+    public EducatorManager(EducatorDao educatorDao,List<Logger> loggers) {
+        this.loggers = loggers;
         this.educatorDao = educatorDao;
     }
 
@@ -28,6 +31,9 @@ public class EducatorManager implements EducatorService {
         else{
             System.out.println("Kullanıcı zaten ekli");
 
+        }
+        for (Logger logger : loggers){
+            logger.log(educator.getFirstName());
         }
     }
 }

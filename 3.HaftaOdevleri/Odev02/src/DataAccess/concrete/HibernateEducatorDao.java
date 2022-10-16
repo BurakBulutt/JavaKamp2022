@@ -16,7 +16,7 @@ public class HibernateEducatorDao implements EducatorDao {
 
     @Override
     public void add(Educator educator) {
-        System.out.println("Eğitimci eklendi : " + educator.getFirstName());
+        System.out.println("Eğitimci eklendi : " + educator.getFirstName() + " " + educator.getLastName());
         educators.add(educator);
     }
 
