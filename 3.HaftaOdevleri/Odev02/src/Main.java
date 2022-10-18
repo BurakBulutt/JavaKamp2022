@@ -31,7 +31,7 @@ public class Main {
         Educator educator1 = new Educator(2,"Burak","Bulut");
 
         Course course =new Course(1,"2022 Java Kampı","Java",educator,50.0);
-        Course course1 = new Course(2,"2022 C++ Kampı","C--",educator1,20.0);
+        Course course1 = new Course(2,"2022 C# Kampı","C#",educator1,20.0);
 
         Category category = new Category(1,"Java Kampları");
         Category category1 = new Category(2,"Ücretsiz Kamplar");
