@@ -1,4 +1,0 @@
-postgres
-Burak_2424
-
-Port : 5432
