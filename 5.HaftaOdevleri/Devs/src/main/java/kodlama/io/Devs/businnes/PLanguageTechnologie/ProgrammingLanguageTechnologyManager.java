@@ -3,6 +3,7 @@ package kodlama.io.Devs.businnes.PLanguageTechnologie;
 import kodlama.io.Devs.businnes.request.CreateProgrammingLanguageTecnhologyRequest;
 import kodlama.io.Devs.businnes.request.UpdateProgrammingLanguageTechnologyRequest;
 import kodlama.io.Devs.businnes.response.FindAllProgrammingLanguageTechnologyResponse;
+import kodlama.io.Devs.businnes.response.FindByIdProgrammingLanguageTechnologyResponse;
 import kodlama.io.Devs.dataAccess.ProgrammingLanguagesTechnologyRepository;
 import kodlama.io.Devs.entities.ProgrammingLanguageTechnology;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,25 @@ public class ProgrammingLanguageTechnologyManager implements ProgrammingLanguage
             findAllProgrammingLanguageTechnologieResponseList.add(findAllProgrammingLanguageTechnologieResponse);
         }
         return findAllProgrammingLanguageTechnologieResponseList;
+    }
+
+    @Override
+    public FindByIdProgrammingLanguageTechnologyResponse findById(int id) throws Exception {
+        List<ProgrammingLanguageTechnology> programmingLanguageTechnologyList
+                = programmingLanguagesTechnologieRepository.findAll();
+        FindByIdProgrammingLanguageTechnologyResponse findByIdProgrammingLanguageTechnologyResponse
+                = null;
+        for (ProgrammingLanguageTechnology programmingLanguageTechnologyTemp : programmingLanguageTechnologyList){
+            if (programmingLanguageTechnologyTemp.getId()==id){
+                findByIdProgrammingLanguageTechnologyResponse = new FindByIdProgrammingLanguageTechnologyResponse();
+                findByIdProgrammingLanguageTechnologyResponse.setId(programmingLanguageTechnologyTemp.getId());
+                findByIdProgrammingLanguageTechnologyResponse.setName(programmingLanguageTechnologyTemp.getName());
+            }
+        }
+        if (findByIdProgrammingLanguageTechnologyResponse== null){
+            throw new Exception("Seçilen idye ait alt teknoloji bulunamadı");
+        }
+        return findByIdProgrammingLanguageTechnologyResponse;
     }
 
     @Override

@@ -9,6 +9,7 @@ import kodlama.io.Devs.businnes.request.UpdateProgrammingLanguageTechnologyReque
 import kodlama.io.Devs.businnes.response.FindAllProgrammingLanguageResponse;
 import kodlama.io.Devs.businnes.response.FindAllProgrammingLanguageTechnologyResponse;
 import kodlama.io.Devs.businnes.response.FindByIdProgrammingLanguageResponse;
+import kodlama.io.Devs.businnes.response.FindByIdProgrammingLanguageTechnologyResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,9 +30,13 @@ public class DevsController {
 
     // PROGRAM LANGUAGE TECHNOLOGY OPERASYONLARI
 
-    @GetMapping("/getprogramlanguagetechnology")
-    public List<FindAllProgrammingLanguageTechnologyResponse> getProgrammingLanguageTechnology(){
+    @GetMapping("/findallprogramlanguagetechnology")
+    public List<FindAllProgrammingLanguageTechnologyResponse> findAllProgrammingLanguageTechnology(){
        return programmingLanguageTechnologyService.findAll();
+    }
+    @GetMapping("/findbyidprogramlanguagetechnology/{id}")
+    public FindByIdProgrammingLanguageTechnologyResponse findByIdProgrammingLanguageTechology(@PathVariable int id) throws Exception{
+        return programmingLanguageTechnologyService.findById(id);
     }
 
     @PostMapping("/addprogramlanguagetecnology")
@@ -51,12 +56,12 @@ public class DevsController {
 
     //PROGRAM LANGUAGE OPERASYONLARI
 
-    @GetMapping("/getprogramlanguage")
+    @GetMapping("/findallprogramlanguage")
     public List<FindAllProgrammingLanguageResponse> getProgrammingLanguage(){
         return programmingLanguageService.findAll();
     }
 
-    @GetMapping("/getprogramlanguage/{id}")
+    @GetMapping("/findbyidprogramlanguage/{id}")
     public FindByIdProgrammingLanguageResponse getByIdProgrammingLanguage(@PathVariable int id) throws Exception{
        return programmingLanguageService.findById(id);
     }
