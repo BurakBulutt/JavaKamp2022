@@ -7,16 +7,5 @@ import java.util.List;
 
 @Service
 public class ProgramLanguageChecking {
-    public static boolean checkName(ProgramLanguage programLanguage, List<ProgramLanguage> programLanguageList){
-        for(ProgramLanguage programLanguageDB : programLanguageList){
-            if (programLanguageDB.getName().equals(programLanguage.getName())){
-                return false;
-            }
-            if (programLanguageDB.getName().isEmpty()){
-                return false;
-            }
-        }
-        return true;
-    }
 
 }
